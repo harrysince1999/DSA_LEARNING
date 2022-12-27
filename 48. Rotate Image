@@ -1,0 +1,15 @@
+    // transpose then reverse row by row
+    void rotate(vector<vector<int>>& m) {
+        int x=0;
+        while(x<m.size())
+        {
+            // Transpose
+            for(int i=x;i<m.size();i++)
+                swap(m[i][x],m[x][i]);
+            x++;
+        }
+        // for reversing row by row
+        for(int i=0;i<m.size();i++){
+            reverse(m[i].begin(),m[i].end());
+        }
+    }
