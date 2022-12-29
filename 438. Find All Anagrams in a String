@@ -1,0 +1,58 @@
+// TLE
+    vector<int> findAnagrams(string s, string p) {
+        int n= p.size();
+        if(s.size()<p.size())   return {};
+        vector<int> ans;
+        sort(p.begin(),p.end());
+        int i=0;
+        int j=n-1;
+        
+        while(j<s.size()){
+            string temp="";
+            for(int x=0;x<n;x++)
+            {
+                temp+= s[x+i];
+            }
+            sort(temp.begin(),temp.end());
+            
+            if(temp.compare(p)==0)
+                ans.push_back(i);
+            
+            i++;
+            j++;
+        }
+        return ans;
+    }
+    
+    // OPTIMIZED APPROCH USING 2 HASH MAP
+    
+       vector<int> findAnagrams(string s, string p) {
+        map<char,int> pattern;
+        map<char,int> st;
+        
+        for(int i=0;i<p.size();i++){
+            pattern[p[i]]++;
+            st[s[i]]++;
+        }
+        
+        vector<int>ans;
+        
+        int i=0;
+        int j=p.size();
+        while(j<s.size())
+        {
+            if(pattern==st) 
+                ans.push_back(i);
+
+            st[s[j]]++;
+            if(st[s[i]]==1)
+                st.erase(s[i]);
+            else
+                st[s[i]]--;
+            i++;
+            j++;
+        }
+        if(pattern==st)
+            ans.push_back(i);
+        return ans;
+    }
