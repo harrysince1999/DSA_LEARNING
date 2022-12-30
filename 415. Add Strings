@@ -1,0 +1,49 @@
+    string addStrings(string num1, string num2) {
+        int i=num1.size()-1;
+        int j=num2.size()-1;
+        string ans="";
+        int c=0;
+        while(i>=0 && j>=0)
+        {
+            int a= num1[i]-'0';
+            int b= num2[j]-'0';
+            int x = (a+b+c);
+            
+            int rem= x%10;
+            c = x/10;
+            char ch = rem+'0';
+            ans+=ch;
+            
+            i--;
+            j--;
+        }
+        while(i>=0)
+        {
+            int a= num1[i]-'0';
+            int x = a+c;
+            
+            int rem= x%10;
+            c = x/10;
+            char ch = rem+'0';
+            ans+=ch;
+            
+            i--;
+        }
+        while(j>=0)
+        {
+            int b= num2[j]-'0';
+            int x = b+c;
+            
+            int rem= x%10;
+            c = x/10;
+            
+            char ch = rem+'0';
+            ans+=ch;
+            
+            j--;
+        }
+        if(c!=0)
+            ans+=(c+'0');
+        reverse(ans.begin(),ans.end());
+        return ans;
+    }
